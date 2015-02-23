@@ -1,0 +1,397 @@
+﻿@model BootstrapRating.Web.Models.SampleViewModel
+
+@(Html.NuPanel((string)ViewBag.Package,
+    @<p>A fluent Html helper for the jQuery <a href="https://github.com/dreyescat/bootstrap-rating">bootstrap-rating</a> plug-in.</p>,
+    (string)ViewBag.Repository, GhFont.fa))
+
+<h3>Examples</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Default rating</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating()
+            </div>
+            <div class="panel-footer">
+                @Html.Code(@<pre>@@Html.BootstrapRating()</pre>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Using model</h4>
+            </div>
+            <div id="viewModelForm" class="panel-body">
+                @using (Html.BeginForm("HtmlPost", "Home"))
+                {
+                    <div class="form-group">
+                        @Html.BootstrapRating(m => m.Value)
+                        <input type="submit" class="btn btn-success btn-sm" value="Html Post" />
+                    </div>
+                }
+
+                @using (Ajax.BeginForm("AjaxPost", "Home", null, new AjaxOptions { UpdateTargetId = "Message", HttpMethod = "POST" }))
+                {
+                    <div class="form-group">
+                        @Html.BootstrapRating(m => m.Value)
+                        <input type="submit" class="btn btn-success btn-sm" value="Ajax Post" />
+                    </div>
+                }
+
+                @Html.DisplayWithIdFor(m => m.Message)
+            </div>
+            <div class="panel-footer">
+                @Html.Code(@<pre>@@Html.BootstrapRating(m => m.Value)</pre>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Half rating</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating().Fractions(2)
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<pre>
+@@Html.BootstrapRating()
+    .Fractions(2)
+</pre>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Disabled rating</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating().Disabled
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+    @@Html.BootstrapRating()
+    .Disabled
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Readonly rating with a value</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating().ReadOnly.Value(3))
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+    @@(Html.BootstrapRating()
+    .ReadOnly
+    .Value(3))
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Readonly rating with a fractional value</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating().ReadOnly.Value(2.5)
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@Html.BootstrapRating()
+    .ReadOnly
+    .Value(2.5)
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Customized heart rating</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating().Symbols("glyphicon glyphicon-heart", "glyphicon glyphicon-heart-empty")
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@Html.BootstrapRating()
+    .Symbols("glyphicon glyphicon-heart", "glyphicon glyphicon-heart-empty")
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Handle events</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating().Class("rating check").Symbols("glyphicon glyphicon-check", "glyphicon glyphicon-unchecked")
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+    @@Html.BootstrapRating()
+    .Class("rating check")
+    .Symbols("glyphicon glyphicon-check", "glyphicon glyphicon-unchecked")
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Customize tooltips</h4>
+            </div>
+            <div class="panel-body">
+                @Html.BootstrapRating().Class("rating-tooltip")
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@Html.BootstrapRating()
+    .Class("rating-tooltip")
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Set stop rate to 10 [1..10]</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Class("rating-tooltip")
+                    .Stop(10))
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@Html.BootstrapRating()
+    .Class("rating-tooltip")
+    .Stop(10)
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Set start rate to 5 [6..10]</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Class("rating-tooltip")
+                    .Start(5))
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@Html.BootstrapRating()
+    .Class("rating-tooltip")
+    .Start(5)
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Set start and stop rate [2..10]</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Class("rating-tooltip")
+                    .Start(1)
+                    .Stop(10))
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@(Html.BootstrapRating()
+    .Class("rating-tooltip")
+    .Start(1)
+    .Stop(10))
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Set start and stop rate [2..10] with step 2</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Class("rating-tooltip")
+                    .Stop(10)
+                    .Step(2))
+            </div>
+            <div class="panel-footer">
+@Html.Code(@<div>
+@@(Html.BootstrapRating()
+    .Class("rating-tooltip")
+    .Stop(10)
+    .Step(2))
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Set start and stop rate [-2..-10] with step -2</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Class("rating-tooltip")
+                    .Stop(-10)
+                    .Step(-2))
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@(Html.BootstrapRating()
+    .Class("rating-tooltip")
+    .Stop(-10)
+    .Step(-2))
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Font Awesome icons</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Class("rating-tooltip")
+                    .Set(BootstrapRatingOptions.filledSymbols, "fa fa-bell fa-3x")
+                    .Set(BootstrapRatingOptions.emptySymbols, "fa fa-bell-o fa-3x")
+                )
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@(Html.BootstrapRating()
+    .Class("rating-tooltip")
+    .Set(BootstrapRatingOptions.filledSymbols, "fa fa-bell fa-3x")
+    .Set(BootstrapRatingOptions.emptySymbols, "fa fa-bell-o fa-3x"))
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Fractional rating</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Symbols("fa fa-star fa-3x", "fa fa-star-o fa-3x")
+                    .Fractions(3)
+                )
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@(Html.BootstrapRating()
+    .Symbols("fa fa-star fa-3x", "fa fa-star-o fa-3x")
+    .Fractions(3))
+</div>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Custom CSS icons</h4>
+            </div>
+            <div class="panel-body">
+                @(Html.BootstrapRating()
+                    .Symbols("symbol symbol-filled", "symbol symbol-empty")
+                )
+            </div>
+            <div class="panel-footer">
+                @Html.Code(
+@<div>
+@@(Html.BootstrapRating()
+    .Symbols("symbol symbol-filled", "symbol symbol-empty"))
+</div>)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('input.check').on('change', function () {
+                alert('Rating: ' + $(this).val());
+            });
+            $('.rating-tooltip').rating({
+                extendSymbol: function (rate) {
+                    $(this).tooltip({
+                        container: 'body',
+                        placement: 'bottom',
+                        title: 'Rate ' + rate
+                    });
+                }
+            });
+            $('.rating').each(function () {
+                $('<span class="label label-default"></span>')
+                  .text($(this).val() || ' ')
+                  .insertAfter(this);
+            });
+            $('.rating').on('change', function () {
+                $(this).next('.label').text($(this).val());
+            });
+        });
+    </script>
+}
