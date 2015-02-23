@@ -1,4 +1,4 @@
-#bootstrap-rating.mvc (ASP.NET / MVC) [![nuget package](https://img.shields.io/nuget/v/bootstrap-rating.mvc.png?style=flat-square)](https://www.nuget.org/profiles/simonray)
+#bootstrap-rating.mvc (C# / MVC) [![nuget package](https://img.shields.io/nuget/v/bootstrap-rating.mvc.png?style=flat-square)](https://www.nuget.org/profiles/simonray)
 
 A Html Helper wrapper for the jQuery [bootstrap-rating](https://github.com/dreyescat/bootstrap-rating) plug-in.
 
